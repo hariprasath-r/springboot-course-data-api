@@ -1,2 +1,15 @@
+#tomcat configurations
 server:
   port: 8082
+  
+#spring boot actuator configurations
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+  server:
+    port: 8084
+  endpoints:
+    web:
+      exposure:
+        include: "*"
