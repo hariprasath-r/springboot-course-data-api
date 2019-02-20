@@ -19,8 +19,10 @@ public class TopicService {
 		List<Topic> topics = new ArrayList<>();
 		
 		/*
-		 * The findAll() method of Spring JPA returns an Iterable of Topic objects after retrieving it from the DB, all the connections and other stuffs are taken care by Spring
-		 * We need to iterate through the Iterable and create a list and send it back, for that we are using MethodReferences in Java 8.
+		 * The findAll() method of Spring JPA returns an Iterable of Topic objects after retrieving it from the DB, 
+		 	all the connections and other stuffs are taken care by Spring
+		 * We need to iterate through the Iterable and create a list and send it back, 
+		 	for that we are using MethodReferences in Java 8.
 		 */
 		topicRepository.findAll().forEach(topics :: add);
 		
@@ -39,6 +41,9 @@ public class TopicService {
 	}
 
 	public void updateTopic(String id, Topic topic) {
+		/*
+		 * Same method save() checks the primary key existence, and creates or updates accordingly
+		 */
 		topicRepository.save(topic);
 	}
 	

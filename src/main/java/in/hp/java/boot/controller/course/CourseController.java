@@ -17,7 +17,7 @@ public class CourseController {
 	@Autowired
 	private CourseService courseService;
 	
-	@RequestMapping("/topics")
+	@RequestMapping("/topics/{topicId}/courses")
 	public List<Course> getCourses() {
 		return courseService.getAllCourses();
 	}
@@ -34,7 +34,7 @@ public class CourseController {
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/topics/{topicId}/courses/{id}")
-	public void updateCourse(@RequestBody Course course, @PathVariable String topicId) {
+	public void updateCourse(@RequestBody Course course, @PathVariable String topicId, @PathVariable String id) {
 		course.setTopic(new Topic(topicId, "", ""));
 		courseService.updateCourse(course);
 	}
