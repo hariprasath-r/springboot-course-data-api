@@ -10,7 +10,7 @@ public class Topic {
 	private String id;
 	private String name;
 	private String description;
-	
+
 	public Topic() {
 		super();
 	}
@@ -45,5 +45,5 @@ public class Topic {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 }
