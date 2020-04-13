@@ -1,6 +1,7 @@
 package in.hp.java.boot.controller.course;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -18,9 +19,9 @@ public class Course {
 	 * Adding JPA @ManyToOne annotation to let Spring JPA know it needs to establish
 	 * a Foreign Key relationship
 	 * 
-	 * TODO FetchType can be made LAZY
+	 * FetchType can be made LAZY
 	 */
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Topic topic;
 
 	public Course() {

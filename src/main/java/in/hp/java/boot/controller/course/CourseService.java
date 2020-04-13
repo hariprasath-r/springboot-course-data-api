@@ -2,6 +2,7 @@ package in.hp.java.boot.controller.course;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,14 @@ public class CourseService {
 	}
 
 	public Course getCourse(String id) {
-		return courseRepository.findById(id).get();
+		/**
+		 * Ideally Optional.isPresent should be used
+		 * Optional<Course> course = courseRepository.findById(id);
+		 * return course.ifPresent() ? course.get() : null;
+		 * or
+		 * return course.orElse(null); 
+		 */
+		return courseRepository.findById(id).orElse(null);
 	}
 
 	public void addCourse(Course course) {

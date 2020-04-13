@@ -2,6 +2,7 @@ package in.hp.java.boot.controller.topic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,10 @@ public class TopicService {
 	}
 
 	public Topic getTopic(String id) {
-		return topicRepository.findById(id).get();
+		/**
+		 * orElse of Optional checks and return if the Optional has value or null
+		 */
+		return topicRepository.findById(id).orElse(null);
 	}
 
 	public void addTopic(Topic topic) {
@@ -45,7 +49,7 @@ public class TopicService {
 		topicRepository.save(topic);
 	}
 
-	public void updateTopic(String id, Topic topic) {
+	public void updateTopic(Topic topic) {
 		/*
 		 * Same method save() checks the primary key existence, and creates or updates
 		 * accordingly

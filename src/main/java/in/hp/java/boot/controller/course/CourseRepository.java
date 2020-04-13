@@ -20,7 +20,7 @@ public interface CourseRepository extends CrudRepository<Course, String> {
 	 */
 	public List<Course> findByName(String name);
 	
-	public List<Course> findByDescription(String Description);
+	public List<Course> findByDescription(String description);
 	
 	/*
 	 * To Retrieve the courses based on Topic because it has foreign key dependencies,
