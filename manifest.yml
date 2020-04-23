@@ -1,0 +1,12 @@
+applications:
+- name: course-data-api
+  disk_quota: 1G
+  instances: 1
+  memory: 1G
+  timeout: 120
+  path: target/course-data-api-0.0.1-SNAPSHOT.jar
+  buildpacks:
+  - https://github.com/cloudfoundry/java-buildpack
+  routes:
+  - route: course-data-api.cfapps.io
+  stack: cflinuxfs3
