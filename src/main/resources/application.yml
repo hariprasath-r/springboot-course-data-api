@@ -1,6 +1,9 @@
 #tomcat configurations
 server:
   port: 8082
+  error:
+    # to exclude stack trace in custom exception messages
+    include-stacktrace: never
 
 spring:
   h2:

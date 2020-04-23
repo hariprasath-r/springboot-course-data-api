@@ -47,7 +47,7 @@ public class TopicController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<Object> updateTopic(@RequestBody Topic topic, @PathVariable String id) {
-        topicService.updateTopic(topic);
+        topicService.updateTopic(topic, id);
         return ResponseEntity.accepted().body(topic);
     }
 

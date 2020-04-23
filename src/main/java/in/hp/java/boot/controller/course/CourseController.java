@@ -11,52 +11,52 @@ import java.util.List;
 
 /**
  * Added Root RequestMapping topics URI
- * @author haripr
  *
+ * @author haripr
  */
 @RestController
 @RequestMapping("/topics")
 public class CourseController {
 
-	@Autowired
-	private CourseService courseService;
+    @Autowired
+    private CourseService courseService;
 
-	private static final String SLASHPATH = "/";
+    private static final String SLASHPATH = "/";
 
-	@GetMapping(value = "/{topicId}/courses")
-	public List<Course> getCourses(@PathVariable String topicId) {
-		return courseService.getAllCourses(topicId);
-	}
+    @GetMapping(value = "/{topicId}/courses")
+    public List<Course> getCourses(@PathVariable String topicId) {
+        return courseService.getAllCourses(topicId);
+    }
 
-	@GetMapping(value = "/{topicId}/courses/{id}")
-	public Course getCourse(@PathVariable String id) {
-		return courseService.getCourse(id);
-	}
+    @GetMapping(value = "/{topicId}/courses/{id}")
+    public Course getCourse(@PathVariable String id) {
+        return courseService.getCourse(id);
+    }
 
-	@PostMapping(value = "/{topicId}/courses")
-	public ResponseEntity<Object> addCourse(@PathVariable String topicId, @RequestBody Course course) {
-		course.setTopic(new Topic(topicId, "", ""));
-		courseService.addCourse(course);
+    @PostMapping(value = "/{topicId}/courses")
+    public ResponseEntity<Object> addCourse(@PathVariable String topicId, @RequestBody Course course) {
+        course.setTopic(new Topic(topicId, "", ""));
+        courseService.addCourse(course);
 
-		URI uri = ServletUriComponentsBuilder
-				.fromCurrentRequest()
-				.path(SLASHPATH + course.getId())
-				.buildAndExpand()
-				.toUri();
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path(SLASHPATH + course.getId())
+                .buildAndExpand()
+                .toUri();
 
-		return ResponseEntity.created(uri).build();
-	}
+        return ResponseEntity.created(uri).build();
+    }
 
-	@PutMapping(value = "/{topicId}/courses/{id}")
-	public ResponseEntity<Object> updateCourse(@RequestBody Course course, @PathVariable String topicId, @PathVariable String id) {
-		course.setTopic(new Topic(topicId, "", ""));
-		courseService.updateCourse(course);
-		return ResponseEntity.accepted().body(course);
-	}
+    @PutMapping(value = "/{topicId}/courses/{id}")
+    public ResponseEntity<Object> updateCourse(@RequestBody Course course, @PathVariable String topicId, @PathVariable String id) {
+        course.setTopic(new Topic(topicId, "", ""));
+        courseService.updateCourse(course, id);
+        return ResponseEntity.accepted().body(course);
+    }
 
-	@DeleteMapping(value = "/{topicId}/courses/{id}")
-	public void deleteCourse(@PathVariable String id) {
-		courseService.deleteCourse(id);
-	}
+    @DeleteMapping(value = "/{topicId}/courses/{id}")
+    public void deleteCourse(@PathVariable String id) {
+        courseService.deleteCourse(id);
+    }
 
 }
