@@ -48,13 +48,7 @@ public class TopicController {
     @PutMapping(value = "/{id}")
     public ResponseEntity<Object> updateTopic(@RequestBody Topic topic, @PathVariable String id) {
         topicService.updateTopic(topic);
-
-        URI uri = ServletUriComponentsBuilder
-				.fromCurrentRequest()
-                .buildAndExpand()
-				.toUri();
-
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.accepted().body(topic);
     }
 
     @DeleteMapping(value = "/{id}")

@@ -51,13 +51,7 @@ public class CourseController {
 	public ResponseEntity<Object> updateCourse(@RequestBody Course course, @PathVariable String topicId, @PathVariable String id) {
 		course.setTopic(new Topic(topicId, "", ""));
 		courseService.updateCourse(course);
-
-		URI uri = ServletUriComponentsBuilder
-				.fromCurrentRequest()
-				.buildAndExpand()
-				.toUri();
-
-		return ResponseEntity.created(uri).build();
+		return ResponseEntity.accepted().body(course);
 	}
 
 	@DeleteMapping(value = "/{topicId}/courses/{id}")
