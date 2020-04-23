@@ -1,7 +1,14 @@
 #tomcat configurations
 server:
   port: 8082
-  
+
+spring:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    show-sql: true
+
 #spring boot actuator configurations
 management:
   endpoint:
