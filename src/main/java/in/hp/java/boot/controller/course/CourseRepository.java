@@ -1,8 +1,8 @@
 package in.hp.java.boot.controller.course;
 
-import java.util.List;
-
 import org.springframework.data.repository.CrudRepository;
+
+import java.util.List;
 
 public interface CourseRepository extends CrudRepository<Course, String> {
 

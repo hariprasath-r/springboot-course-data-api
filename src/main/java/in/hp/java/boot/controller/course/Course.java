@@ -1,11 +1,11 @@
 package in.hp.java.boot.controller.course;
 
+import in.hp.java.boot.controller.topic.Topic;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
-import in.hp.java.boot.controller.topic.Topic;
 
 @Entity
 public class Course {
