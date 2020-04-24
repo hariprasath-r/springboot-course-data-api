@@ -1,6 +1,6 @@
-package in.hp.java.boot.controller.course;
+package in.hp.java.boot.course;
 
-import in.hp.java.boot.controller.topic.Topic;
+import in.hp.java.boot.topic.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

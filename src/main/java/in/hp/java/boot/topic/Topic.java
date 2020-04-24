@@ -1,4 +1,4 @@
-package in.hp.java.boot.controller.topic;
+package in.hp.java.boot.topic;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

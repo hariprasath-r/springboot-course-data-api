@@ -1,4 +1,4 @@
-package in.hp.java.boot.controller.course;
+package in.hp.java.boot.course;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

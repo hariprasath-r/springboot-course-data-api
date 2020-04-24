@@ -1,6 +1,6 @@
-package in.hp.java.boot.controller.course;
+package in.hp.java.boot.course;
 
-import in.hp.java.boot.controller.topic.Topic;
+import in.hp.java.boot.topic.Topic;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

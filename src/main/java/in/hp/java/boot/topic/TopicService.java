@@ -1,6 +1,6 @@
-package in.hp.java.boot.controller.topic;
+package in.hp.java.boot.topic;
 
-import in.hp.java.boot.controller.exceptions.ResourceNotFoundException;
+import in.hp.java.boot.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

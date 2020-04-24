@@ -1,4 +1,4 @@
-package in.hp.java.boot.controller.exceptions;
+package in.hp.java.boot.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

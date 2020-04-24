@@ -1,4 +1,4 @@
-package in.hp.java.boot.controller.exceptions;
+package in.hp.java.boot.exceptions;
 
 public class GenericException {
     private String timestamp;
