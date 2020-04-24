@@ -1,9 +1,9 @@
 package in.hp.java.boot.exceptions;
 
 public class GenericException {
-    private String timestamp;
-    private String message;
-    private String details;
+    private final String timestamp;
+    private final String message;
+    private final String details;
 
     public GenericException(String timestamp, String message, String details) {
         this.timestamp = timestamp;

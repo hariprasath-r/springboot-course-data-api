@@ -4,9 +4,9 @@ import in.hp.java.boot.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 public class CourseService {
@@ -28,11 +28,11 @@ public class CourseService {
 		 * Spring Data JPA accepts a topic id and returns back all the courses
 		 * associated with the topic
 		 */
-		return courseRepository.findByTopicId(topicId).stream().collect(Collectors.toList());
+		return new ArrayList<>(courseRepository.findByTopicId(topicId));
 	}
 
 	public Course getCourse(String id) {
-		/**
+		/*
 		 * Using orElseThrow to throw unchecked exception
 		 */
 		return courseRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));

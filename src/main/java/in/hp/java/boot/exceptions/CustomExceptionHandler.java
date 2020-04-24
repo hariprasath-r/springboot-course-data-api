@@ -42,7 +42,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     public final ResponseEntity<Object> handleAllException(Exception ex, WebRequest request) {
         GenericException genericException = new GenericException(
                 new Date().toString(), ex.getMessage(), request.getDescription(false));
-        return new ResponseEntity(genericException, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(genericException, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     /**
@@ -56,7 +56,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     public final ResponseEntity<Object> handleAllException(ResourceNotFoundException ex, WebRequest request) {
         GenericException genericException = new GenericException(
                 new Date().toString(), ex.getMessage(), request.getDescription(false));
-        return new ResponseEntity(genericException, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(genericException, HttpStatus.NOT_FOUND);
     }
 
     /**

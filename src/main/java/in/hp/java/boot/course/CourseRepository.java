@@ -18,9 +18,9 @@ public interface CourseRepository extends JpaRepository<Course, String> {
 	 * Note, no implementation is required, 
 	 * 	as Spring Data JPA takes care of it if created a proper method name following the conventions.
 	 */
-	public List<Course> findByName(String name);
+    List<Course> findByName(String name);
 	
-	public List<Course> findByDescription(String description);
+	List<Course> findByDescription(String description);
 	
 	/*
 	 * To Retrieve the courses based on Topic because it has foreign key dependencies,
@@ -31,5 +31,5 @@ public interface CourseRepository extends JpaRepository<Course, String> {
 	 * Model	-> in this case it is "Topic"
 	 * Property	-> primary key name of that model "Id"
 	 */
-	public List<Course> findByTopicId(String topicId);
+    List<Course> findByTopicId(String topicId);
 }

@@ -4,9 +4,9 @@ import in.hp.java.boot.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * @Service - Indicates that this is a singleton
@@ -23,11 +23,11 @@ public class TopicService {
 	private TopicRepository topicRepository;
 
 	public List<Topic> getAllTopics() {
-		return topicRepository.findAll().stream().collect(Collectors.toList());
+		return new ArrayList<>(topicRepository.findAll());
 	}
 
 	public Topic getTopic(String id) {
-		/**
+		/*
 		 * orElse of Optional checks and return if the Optional has value or null
 		 * orElseThrow will throw the supplied exception if Optional is null or empty
 		 */

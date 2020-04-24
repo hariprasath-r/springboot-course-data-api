@@ -1,6 +1,6 @@
 # springboot-course-data-api
 
-Simple POC using Spring Boot to create a Course API.
+A simple POC using Spring Boot to create a Course API.
 ----------------------------------------------------
 
 Spring Boot Dependencies Used:
