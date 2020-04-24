@@ -6,12 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Course {
 
 	@Id
+	@Size(min = 2, message = "Id should be of 2 chars minimum")
 	private String id;
+
+	@Size(min = 4, message = "Name should be of 4 chars minimum")
 	private String name;
 	private String description;
 

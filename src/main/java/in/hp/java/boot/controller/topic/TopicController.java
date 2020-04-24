@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -32,8 +33,13 @@ public class TopicController {
         return topicService.getTopic(id);
     }
 
+    /**
+     * @Valid - used to validated the bean with the specified validators in bean class
+     * @param topic
+     * @return
+     */
     @PostMapping
-    public ResponseEntity<Object> addTopic(@RequestBody Topic topic) {
+    public ResponseEntity<Object> addTopic(@Valid @RequestBody Topic topic) {
         topicService.addTopic(topic);
 
         URI uri = ServletUriComponentsBuilder

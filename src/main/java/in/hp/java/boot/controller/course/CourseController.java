@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class CourseController {
     }
 
     @PostMapping(value = "/{topicId}/courses")
-    public ResponseEntity<Object> addCourse(@PathVariable String topicId, @RequestBody Course course) {
+    public ResponseEntity<Object> addCourse(@PathVariable String topicId, @Valid @RequestBody Course course) {
         course.setTopic(new Topic(topicId, "", ""));
         courseService.addCourse(course);
 
