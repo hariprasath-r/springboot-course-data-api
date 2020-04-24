@@ -11,6 +11,9 @@ spring:
       enabled: true
   jpa:
     show-sql: true
+  # configuring basename here instead of @Bean config for ResourceBundleMessageSource
+  messages:
+    basename: messages
 
 #spring boot actuator configurations
 management:

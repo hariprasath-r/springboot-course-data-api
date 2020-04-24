@@ -1,6 +1,7 @@
 package in.hp.java.boot;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -27,11 +28,12 @@ public class InternationalizationDemo {
      * Accept-Language - where locale is passed
      * required - false, since we already have default locale configured
      *
-     * @param locale
+     * Instead of accepting from header everywhere, we can use LocaleContextHolder to retrieve the value
+     *
      * @return
      */
     @GetMapping("/i18n")
-    public String internationalGreeting(@RequestHeader(value = "Accept-Language", required = false) Locale locale) {
-        return messageSource.getMessage("good.morning.message", null, locale);
+    public String internationalGreeting() {
+        return messageSource.getMessage("good.morning.message", null, LocaleContextHolder.getLocale());
     }
 }
