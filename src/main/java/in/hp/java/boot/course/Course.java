@@ -1,6 +1,8 @@
 package in.hp.java.boot.course;
 
 import in.hp.java.boot.topic.Topic;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,21 +10,24 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
+@ApiModel("Course Details")
 @Entity
 public class Course {
 
 	@Id
 	@Size(min = 2, message = "Id should be of 2 chars minimum")
+	@ApiModelProperty(notes = "Id should be of 2 chars minimum")
 	private String id;
 
 	@Size(min = 4, message = "Name should be of 4 chars minimum")
+	@ApiModelProperty(notes = "Name should be of 4 chars minimum")
 	private String name;
 	private String description;
 
 	/*
 	 * Adding JPA @ManyToOne annotation to let Spring JPA know it needs to establish
 	 * a Foreign Key relationship
-	 * 
+	 *
 	 * FetchType can be made LAZY
 	 */
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -80,3 +85,4 @@ public class Course {
 	}
 
 }
+
