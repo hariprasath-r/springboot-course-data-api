@@ -1,12 +1,15 @@
 package in.hp.java.boot.course;
 
 import in.hp.java.boot.exceptions.ResourceNotFoundException;
+import in.hp.java.boot.topic.Topic;
+import in.hp.java.boot.topic.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class CourseService {
@@ -16,6 +19,9 @@ public class CourseService {
 	 */
 	@Autowired
 	private CourseRepository courseRepository;
+
+	@Autowired
+	private TopicRepository topicRepository;
 
 	public List<Course> getAllCourses(String topicId) {
 		/*
@@ -28,7 +34,10 @@ public class CourseService {
 		 * Spring Data JPA accepts a topic id and returns back all the courses
 		 * associated with the topic
 		 */
-		return new ArrayList<>(courseRepository.findByTopicId(topicId));
+		Optional<Topic> topic = topicRepository.findById(topicId);
+		if (!topic.isPresent())
+			throw new ResourceNotFoundException(topicId);
+		return topic.get().getCourses();
 	}
 
 	public Course getCourse(String id) {
