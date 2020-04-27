@@ -1,7 +1,6 @@
 package in.hp.java.boot.course;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import in.hp.java.boot.topic.Topic;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -15,8 +14,10 @@ import javax.validation.constraints.Size;
 /**
  * @JsonIgnoreProperties - used to ignore certain properties during Json conversion
  * @JsonIgnore - recommended to use
+ * @JsonFilter - Indicated that the bean can be filtered
  */
 //@JsonIgnoreProperties(value = {"topic"})
+//@JsonFilter("SomeBeanFilter")
 @ApiModel("Course Details")
 @Entity
 public class Course {

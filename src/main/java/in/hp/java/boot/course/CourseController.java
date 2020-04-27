@@ -26,6 +26,15 @@ public class CourseController {
 
     @GetMapping(value = "/{topicId}/courses")
     public List<Course> getCourses(@PathVariable String topicId) {
+        /*
+         * Code to add Dynamic Filter
+        SimpleBeanPropertyFilter simpleBeanPropertyFilter =
+                SimpleBeanPropertyFilter.filterOutAllExcept("topic");
+        FilterProvider filterProvider =
+                new SimpleFilterProvider().addFilter("SomeBeanFilter", simpleBeanPropertyFilter);
+        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(courseService.getAllCourses(topicId));
+        mappingJacksonValue.setFilters(filterProvider);
+        */
         return courseService.getAllCourses(topicId);
     }
 
