@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import in.hp.java.boot.course.Course;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,9 +31,12 @@ public class Topic {
     /**
      * Ignoring this to avoid recursive loop in object to json conversion
      * Since course have user.
+     *
+     * @Cascade - used to delete the foreign key related data also
      */
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "topic")
+    @Cascade(CascadeType.DELETE)
     private List<Course> courses;
 
     public Topic() {
