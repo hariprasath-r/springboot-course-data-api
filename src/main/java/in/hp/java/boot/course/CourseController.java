@@ -1,6 +1,5 @@
 package in.hp.java.boot.course;
 
-import in.hp.java.boot.topic.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,14 +38,13 @@ public class CourseController {
     }
 
     @GetMapping(value = "/{topicId}/courses/{id}")
-    public Course getCourse(@PathVariable String id) {
-        return courseService.getCourse(id);
+    public Course getCourse(@PathVariable String topicId, @PathVariable String id) {
+        return courseService.getCourse(topicId, id);
     }
 
     @PostMapping(value = "/{topicId}/courses")
     public ResponseEntity<Object> addCourse(@PathVariable String topicId, @Valid @RequestBody Course course) {
-        course.setTopic(new Topic(topicId, "", ""));
-        courseService.addCourse(course);
+        courseService.addCourse(topicId, course);
 
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -59,8 +57,7 @@ public class CourseController {
 
     @PutMapping(value = "/{topicId}/courses/{id}")
     public ResponseEntity<Object> updateCourse(@RequestBody Course course, @PathVariable String topicId, @PathVariable String id) {
-        course.setTopic(new Topic(topicId, "", ""));
-        courseService.updateCourse(course, id);
+        courseService.updateCourse(course, id, topicId);
         return ResponseEntity.accepted().body(course);
     }
 

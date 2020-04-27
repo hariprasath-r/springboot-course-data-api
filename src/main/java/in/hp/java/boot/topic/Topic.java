@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
@@ -30,7 +31,7 @@ public class Topic {
      * Since course have user.
      */
     @JsonIgnore
-    @OneToMany(mappedBy = "topic")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "topic")
     private List<Course> courses;
 
     public Topic() {

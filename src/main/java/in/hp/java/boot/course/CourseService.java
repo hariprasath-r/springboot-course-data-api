@@ -1,15 +1,12 @@
 package in.hp.java.boot.course;
 
 import in.hp.java.boot.exceptions.ResourceNotFoundException;
-import in.hp.java.boot.topic.Topic;
-import in.hp.java.boot.topic.TopicRepository;
+import in.hp.java.boot.topic.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class CourseService {
@@ -21,7 +18,7 @@ public class CourseService {
 	private CourseRepository courseRepository;
 
 	@Autowired
-	private TopicRepository topicRepository;
+	private TopicService topicService;
 
 	public List<Course> getAllCourses(String topicId) {
 		/*
@@ -34,10 +31,17 @@ public class CourseService {
 		 * Spring Data JPA accepts a topic id and returns back all the courses
 		 * associated with the topic
 		 */
-		Optional<Topic> topic = topicRepository.findById(topicId);
-		if (!topic.isPresent())
-			throw new ResourceNotFoundException(topicId);
-		return topic.get().getCourses();
+		return topicService.getTopic(topicId).getCourses();
+	}
+
+	public Course getCourse(String topicId, String courseId) {
+		/*
+		 To validate Topic Id is present or not
+		 We can also get course from list of courses for the specified topic
+		 Later while expanding feature with hibernate named queries will do changes here
+		 */
+		topicService.getTopic(topicId);
+		return getCourse(courseId);
 	}
 
 	public Course getCourse(String id) {
@@ -47,14 +51,16 @@ public class CourseService {
 		return courseRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
-	public void addCourse(Course course) {
+	public void addCourse(String topicId, Course course) {
 		/*
 		 * Method saves the topic instance to the database
 		 */
+		course.setTopic(topicService.getTopic(topicId));
 		courseRepository.save(course);
 	}
 
-	public void updateCourse(Course course, String id) {
+	public void updateCourse(Course course, String id, String topicId) {
+		topicService.getTopic(topicId);
 		if (Objects.nonNull(getCourse(id)))
 			courseRepository.save(course);
 	}
