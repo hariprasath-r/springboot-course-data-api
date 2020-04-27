@@ -1,5 +1,7 @@
 package in.hp.java.boot.course;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import in.hp.java.boot.topic.Topic;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -10,6 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
+/**
+ * @JsonIgnoreProperties - used to ignore certain properties during Json conversion
+ * @JsonIgnore - recommended to use
+ */
+//@JsonIgnoreProperties(value = {"topic"})
 @ApiModel("Course Details")
 @Entity
 public class Course {
@@ -27,10 +34,12 @@ public class Course {
 	/*
 	 * Adding JPA @ManyToOne annotation to let Spring JPA know it needs to establish
 	 * a Foreign Key relationship
-	 *
 	 * FetchType can be made LAZY
+	 *
+	 * @JsonIgnore is used to ignore this field in response
 	 */
 	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnore
 	private Topic topic;
 
 	public Course() {
