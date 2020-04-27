@@ -39,7 +39,7 @@ public class Course {
 	 *
 	 * @JsonIgnore is used to ignore this field in response
 	 */
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Topic topic;
 
