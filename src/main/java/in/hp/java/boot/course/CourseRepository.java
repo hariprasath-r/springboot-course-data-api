@@ -1,10 +1,10 @@
-package in.hp.java.boot.controller.course;
+package in.hp.java.boot.course;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-import org.springframework.data.repository.CrudRepository;
-
-public interface CourseRepository extends CrudRepository<Course, String> {
+public interface CourseRepository extends JpaRepository<Course, String> {
 
 	/*
 	 * Custom method to retrieve list of courses by passing "name" as property
@@ -18,9 +18,9 @@ public interface CourseRepository extends CrudRepository<Course, String> {
 	 * Note, no implementation is required, 
 	 * 	as Spring Data JPA takes care of it if created a proper method name following the conventions.
 	 */
-	public List<Course> findByName(String name);
+    List<Course> findByName(String name);
 	
-	public List<Course> findByDescription(String description);
+	List<Course> findByDescription(String description);
 	
 	/*
 	 * To Retrieve the courses based on Topic because it has foreign key dependencies,
@@ -31,5 +31,5 @@ public interface CourseRepository extends CrudRepository<Course, String> {
 	 * Model	-> in this case it is "Topic"
 	 * Property	-> primary key name of that model "Id"
 	 */
-	public List<Course> findByTopicId(String topicId);
+    List<Course> findByTopicId(String topicId);
 }

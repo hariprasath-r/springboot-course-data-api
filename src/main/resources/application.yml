@@ -1,7 +1,25 @@
 #tomcat configurations
 server:
   port: 8082
-  
+  error:
+    # to exclude stack trace in custom exception messages
+    include-stacktrace: never
+
+spring:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    show-sql: true
+  # configuring basename here instead of @Bean config for ResourceBundleMessageSource
+  messages:
+    basename: messages
+  # by default the username will be "user" and password will be generated and printed in console
+  security:
+    user:
+      name: username
+      password: password
+
 #spring boot actuator configurations
 management:
   endpoint:

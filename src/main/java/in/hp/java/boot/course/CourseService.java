@@ -1,11 +1,12 @@
-package in.hp.java.boot.controller.course;
+package in.hp.java.boot.course;
+
+import in.hp.java.boot.exceptions.ResourceNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.Objects;
 
 @Service
 public class CourseService {
@@ -17,8 +18,6 @@ public class CourseService {
 	private CourseRepository courseRepository;
 
 	public List<Course> getAllCourses(String topicId) {
-		List<Course> courses = new ArrayList<>();
-
 		/*
 		 * The findAll() method of Spring JPA returns an Iterable of Topic objects after
 		 * retrieving it from the DB, all the connections and other stuffs are taken
@@ -29,20 +28,14 @@ public class CourseService {
 		 * Spring Data JPA accepts a topic id and returns back all the courses
 		 * associated with the topic
 		 */
-		courseRepository.findByTopicId(topicId).forEach(courses::add);
-
-		return courses;
+		return new ArrayList<>(courseRepository.findByTopicId(topicId));
 	}
 
 	public Course getCourse(String id) {
-		/**
-		 * Ideally Optional.isPresent should be used
-		 * Optional<Course> course = courseRepository.findById(id);
-		 * return course.ifPresent() ? course.get() : null;
-		 * or
-		 * return course.orElse(null); 
+		/*
+		 * Using orElseThrow to throw unchecked exception
 		 */
-		return courseRepository.findById(id).orElse(null);
+		return courseRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
 	public void addCourse(Course course) {
@@ -52,12 +45,14 @@ public class CourseService {
 		courseRepository.save(course);
 	}
 
-	public void updateCourse(Course course) {
-		courseRepository.save(course);
+	public void updateCourse(Course course, String id) {
+		if (Objects.nonNull(getCourse(id)))
+			courseRepository.save(course);
 	}
 
 	public void deleteCourse(String id) {
-		courseRepository.deleteById(id);
+		if (Objects.nonNull(getCourse(id)))
+			courseRepository.deleteById(id);
 	}
 
 }
