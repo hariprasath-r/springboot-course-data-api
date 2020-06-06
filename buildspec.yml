@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: openjdk8
+      java: corretto11
     commands:
       - echo installing runtime
   pre_build:
