@@ -6,11 +6,15 @@ server:
     include-stacktrace: never
 
 spring:
-  h2:
-    console:
-      enabled: true
+#  h2:
+#    console:
+#      enabled: true
+#      settings.web-allow-others: true
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties.hibernate.dialect: org.hibernate.dialect.MySQL57Dialect
   # configuring basename here instead of @Bean config for ResourceBundleMessageSource
   messages:
     basename: messages
@@ -20,13 +24,20 @@ spring:
       name: username
       password: password
 
+  # to connect to RDS / local by default
+  datasource:
+    url: jdbc:mysql://${RDS_HOSTNAME:localhost}:${RDS_PORT:3306}/${RDS_DB_NAME:coursedb}
+    username: ${RDS_USERNAME:course_user}
+    password: ${RDS_PASSWORD:dummypassword}
+
+
 #spring boot actuator configurations
 management:
   endpoint:
     shutdown:
       enabled: true
   server:
-    port: 8084
+    port: 5000
   endpoints:
     web:
       exposure:
