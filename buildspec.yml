@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: openjdk8
+    commands:
+      - echo installing runtime
+  pre_build:
+    commands:
+      - echo pre_build stage
+  build:
+    commands:
+      - mvn clean package
+      - echo building
+  post_build:
+    commands:
+      - echo post_build stage
+
+artifacts:
+  files:
+    - target/course-data-api-0.0.1-SNAPSHOT.war
