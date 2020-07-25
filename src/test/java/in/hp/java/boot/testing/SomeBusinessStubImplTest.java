@@ -26,15 +26,7 @@ public class SomeBusinessStubImplTest {
 
     @Test
     public void calculateSumUsingDataService() {
-        /**
-         * Stubbing the interface using anonymous inner class
-         */
-        this.someBusiness.setSomeDataService(new SomeDataService() {
-            @Override
-            public int[] retrieveData() {
-                return new int[]{1, 2, 3};
-            }
-        });
+        this.someBusiness.setSomeDataService(() -> new int[]{1, 2, 3});
 
         int actualResult = someBusiness.calculateSumUsingDataService();
         int expectedResult = 6;
@@ -43,15 +35,7 @@ public class SomeBusinessStubImplTest {
 
     @Test
     public void calculateSumUsingDataService_withOneValue() {
-        /**
-         * Stubbing the interface using anonymous inner class
-         */
-        this.someBusiness.setSomeDataService(new SomeDataService() {
-            @Override
-            public int[] retrieveData() {
-                return new int[]{1};
-            }
-        });
+        this.someBusiness.setSomeDataService(() -> new int[]{1});
 
         int actualResult = someBusiness.calculateSumUsingDataService();
         int expectedResult = 1;
@@ -60,15 +44,7 @@ public class SomeBusinessStubImplTest {
 
     @Test
     public void calculateSumUsingDataService_withNoValue() {
-        /**
-         * Stubbing the interface using anonymous inner class
-         */
-        this.someBusiness.setSomeDataService(new SomeDataService() {
-            @Override
-            public int[] retrieveData() {
-                return new int[]{};
-            }
-        });
+        this.someBusiness.setSomeDataService(() -> new int[]{});
 
         int actualResult = someBusiness.calculateSumUsingDataService();
         int expectedResult = 0;
