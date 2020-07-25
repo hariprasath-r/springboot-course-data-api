@@ -21,22 +21,21 @@ public class SomeBusinessStubImplTest {
         this.someBusiness = new SomeBusinessImpl();
 
         // common way of stubbing
-        this.someBusiness.setSomeDataService(new SomeDataServiceStub());
-
-        /**
-         * Stubbing the interface using anonymous inner class
-         */
-        /*this.someBusiness.setSomeDataService(new SomeDataService() {
-            @Override
-            public int[] retrieveData() {
-                return new int[]{1, 2, 3};
-            }
-        });*/
-
+        // this.someBusiness.setSomeDataService(new SomeDataServiceStub());
     }
 
     @Test
     public void calculateSumUsingDataService() {
+        /**
+         * Stubbing the interface using anonymous inner class
+         */
+        this.someBusiness.setSomeDataService(new SomeDataService() {
+            @Override
+            public int[] retrieveData() {
+                return new int[]{1, 2, 3};
+            }
+        });
+
         int actualResult = someBusiness.calculateSumUsingDataService();
         int expectedResult = 6;
         Assert.assertEquals(expectedResult, actualResult);
@@ -44,6 +43,16 @@ public class SomeBusinessStubImplTest {
 
     @Test
     public void calculateSumUsingDataService_withOneValue() {
+        /**
+         * Stubbing the interface using anonymous inner class
+         */
+        this.someBusiness.setSomeDataService(new SomeDataService() {
+            @Override
+            public int[] retrieveData() {
+                return new int[]{1};
+            }
+        });
+
         int actualResult = someBusiness.calculateSumUsingDataService();
         int expectedResult = 1;
         Assert.assertEquals(expectedResult, actualResult);
@@ -51,6 +60,16 @@ public class SomeBusinessStubImplTest {
 
     @Test
     public void calculateSumUsingDataService_withNoValue() {
+        /**
+         * Stubbing the interface using anonymous inner class
+         */
+        this.someBusiness.setSomeDataService(new SomeDataService() {
+            @Override
+            public int[] retrieveData() {
+                return new int[]{};
+            }
+        });
+
         int actualResult = someBusiness.calculateSumUsingDataService();
         int expectedResult = 0;
         Assert.assertEquals(expectedResult, actualResult);
