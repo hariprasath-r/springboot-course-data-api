@@ -3,22 +3,22 @@ package in.hp.java.boot.testing;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 public class SomeBusinessMockImplTest {
 
+    @InjectMocks
     private SomeBusinessImpl someBusiness;
 
+    @Mock
     private SomeDataService someDataService;
-
-    @Before
-    public void initialize() {
-        this.someDataService = mock(SomeDataService.class);
-        this.someBusiness = new SomeBusinessImpl();
-        this.someBusiness.setSomeDataService(this.someDataService);
-    }
 
     @Test
     public void calculateSumUsingDataService() {
