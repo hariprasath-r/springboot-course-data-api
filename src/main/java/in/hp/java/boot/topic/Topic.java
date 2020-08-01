@@ -81,4 +81,15 @@ public class Topic {
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Topic{");
+        sb.append("id='").append(id).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", description='").append(description).append('\'');
+        sb.append(", courses=").append(courses);
+        sb.append('}');
+        return sb.toString();
+    }
 }

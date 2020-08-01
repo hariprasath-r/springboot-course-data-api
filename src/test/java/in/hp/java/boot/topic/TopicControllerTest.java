@@ -2,8 +2,6 @@ package in.hp.java.boot.topic;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -17,8 +15,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebMvcTest(TopicController.class)
 public class TopicControllerTest {
@@ -31,7 +27,7 @@ public class TopicControllerTest {
 
     @Test
     public void getTopics() throws Exception {
-        Mockito.when(topicService.getAllTopics()).thenReturn(new ArrayList<Topic>());
+        Mockito.when(topicService.getAllTopics()).thenReturn(new ArrayList<>());
 
         MockHttpServletRequestBuilder accept = MockMvcRequestBuilders
                 .get("/topics")
@@ -42,7 +38,18 @@ public class TopicControllerTest {
     }
 
     @Test
-    public void getTopic() {
+    public void getTopic() throws Exception {
+        Topic topic = new Topic();
+        topic.setId("1");
+        Mockito.when(topicService.getTopic("1")).thenReturn(topic);
+
+        MockHttpServletRequestBuilder accept = MockMvcRequestBuilders
+                .get("/topics/1")
+                .accept(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(accept)
+                .andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
+                .andReturn();
     }
 
     @Test
